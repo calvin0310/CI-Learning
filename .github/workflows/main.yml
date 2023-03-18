@@ -10,10 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: debianmaster/actions-k3s@master
+      - name: actions-k3s
+        uses: debianmaster/actions-k3s@v1.0.5
         id: k3s
         with:
-          version: 'v1.25.7+k3s1'
+          version: 'v1.21.2-k3s1'
       - run: |
           kubectl get nodes
-          kubectl version
+          kubectl get pods -A
+          sleep 20
+          kubectl get pods -A
